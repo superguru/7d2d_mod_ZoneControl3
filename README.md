@@ -1,19 +1,12 @@
 # Zone Control 3 - A 7 Days to Die mod
 
-MOD DESCRIPTION GOES HERE
+Zone Control is a 7 Days to Die mod that allows you and your allies to systematically clear the world of the zombie infestation.
+
+Create and place different types of zone clearance blocks to expand your area of influence.
+
+Would you like to know more?
 
 ## Introduction
-
-This is a blank / template for a new mod solution and project.
-
-## TODO List
-
-- [ ] Update the `<ProjectDir>\ModPackage\Docs\README.md` with information that should be on the mod front page and document features/config/commands
-- [ ] Update this `<ProjectDir>\README.md` with additional build instructions
-- [ ] Update this `README.md` and remove the TODO List section
-
-Then:
-- [ ] Edit `DESIGN.md` to describe the new mod
 
 ## 🏆Credits
 

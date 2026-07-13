@@ -7,4 +7,7 @@
   <Author value="superguru, gazorper" />
   <Website value="https://github.com/superguru/7d2d_mod_ZoneControl3"/>
   <MainReleaseSite value="https://www.nexusmods.com/7daystodie/mods/XXX" />
+  <AltSite_7DaysToDieMods value="https://7daystodiemods.com/mods/XXX"/>
+  <AltSite_TFPMods_Resource value="https://community.thefunpimps.com/resources/XXX/" />
+  <License value="Apache-2.0" />
 </xml>
