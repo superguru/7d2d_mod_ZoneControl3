@@ -1,0 +1,28 @@
+# gazdeploy.yaml - Deploy configuration for ZoneControl3
+#
+# MSBuild post-build command (covers both Debug and Release):
+#   "$(SolutionDir)..\GAZ Mod Deploy\deploy_target_build.py" --config "$(ProjectDir)gzdeploy.yaml" $(Configuration)
+
+mod_name: ZoneControl3
+project_dir: "D:/Projects/7 Days To Die/projects/Zone Control 3/ZoneControl/"
+output_dir: bin/{build_target}  # {build_target} is substituted at runtime
+
+# --- Flags ---
+
+clean: false
+force: false
+no_pause: false
+verbose: false
+
+# --- File copy behaviour ---
+
+always_copy_masks:
+  - "*.png"
+
+# Uncomment and populate if ZoneControl3 needs extra DLLs from the output dir:
+#additional_output_files:
+#  - "StructuredText.dll"
+
+# Uncomment and populate if ZoneControl3 needs files from elsewhere on disk:
+# additional_files:
+#   - "C:/path/to/file.dll"

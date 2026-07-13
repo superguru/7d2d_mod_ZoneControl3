@@ -1,0 +1,7 @@
+{
+    "metaDescription": "RELEASE Configuration file for Zone Control 3 mod package",
+    "version": "3.0.0",
+    "hideLandClaimFromCompassOnStart": true,
+    "hideSleepingBagFromCompassOnStart": true,
+    "isDebug": false
+}
