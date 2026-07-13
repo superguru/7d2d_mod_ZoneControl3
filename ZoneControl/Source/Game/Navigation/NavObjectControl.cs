@@ -74,8 +74,6 @@ internal static class NavObjectControl
             {
                 return navObject;
             }
-
-            ModLogger.DebugLog($"({className}) does not match ({navObjectClassName}) - {i} of {maxNavObjects}");
         }
 
         ModLogger.DebugLog($"Could not find NavObject({className}) in all {maxNavObjects} known NavObjects");
@@ -85,5 +83,45 @@ internal static class NavObjectControl
     internal static string GetNavObjectClassName(NavObject navObject)
     {
         return navObject?.NavObjectClass?.NavObjectClassName;
+    }
+
+    internal static string GetNavObjectName(NavObject navObject)
+    {
+        if (navObject == null)
+        {
+            return "null";
+        }
+
+        string name = navObject.name;
+        if (string.IsNullOrEmpty(name))
+        {
+            name = navObject.localizedName;
+            if (!string.IsNullOrEmpty(name))
+            {
+                name = $"[LN] {name}";
+            }
+            else
+            {
+                name = navObject.HiddenDisplayName;
+                if (!string.IsNullOrEmpty(name))
+                {
+                    name = $"[HN] {name}";
+                }
+                else
+                {
+                    name = navObject.NavObjectClass?.NavObjectClassName;
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        name = $"[NC] {name}";
+                    }
+                    else
+                    {
+                        name = $"Unknown NavObject/Class type {navObject.GetType()} for |{navObject}|";
+                    }
+                }
+            }
+        }
+
+        return name;
     }
 }

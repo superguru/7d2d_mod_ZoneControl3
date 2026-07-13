@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using ZoneControl.Game.Navigation;
 using ZoneControl.Infrastructure;
 
 namespace ZoneControl.Harmony.Extends;
@@ -18,46 +19,12 @@ internal static class XUiC_MapArea_Ext
     {
         const string d_MethodName = nameof(XUiC_MapArea_onMapPressedLeft);
 
-        var navObject = __instance?.closestMouseOverNavObject;
-        if (navObject == null)
-        {
-            ModLogger.DebugLog($"{d_MethodName}: Closest NavObject is empty");
-            return;
-        }
+        NavObject navObject = __instance?.closestMouseOverNavObject;
+        string name = NavObjectControl.GetNavObjectName(navObject);
 
-        var name = navObject.name;
-        if (string.IsNullOrEmpty(name))
-        {
-            name = navObject.localizedName;
-            if (!string.IsNullOrEmpty(name))
-            {
-                name = $"[LN] {name}";
-            }
-            else
-            {
-                name = navObject.HiddenDisplayName;
-                if (!string.IsNullOrEmpty(name))
-                {
-                    name = $"[HN] {name}";
-                }
-                else
-                {
-                    name = navObject.NavObjectClass?.NavObjectClassName;
-                    if (!string.IsNullOrEmpty(name))
-                    {
-                        name = $"[NC] {name}";
-                    }
-                    else
-                    {
-                        name = $"Unknown NavObject/Class type {navObject.GetType()} for |{navObject}|";
-                    }
-                }
-            }
-        }
-
-        var isHidden = navObject.hiddenOnCompass;
+        var isHidden = navObject?.hiddenOnCompass ?? false;
         var newCompassState = isHidden ? "hidden" : "showing";
 
-        ModLogger.DebugLog($"{d_MethodName}: Nav Object {name} compass state set to {newCompassState}");
+        ModLogger.DebugLog($"{d_MethodName}: Nav Object '{name}' compass state set to {newCompassState}");
     }
 }
