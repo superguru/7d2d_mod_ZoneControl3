@@ -15,6 +15,7 @@ This is a [7 Days to Die](https://store.steampowered.com/app/251570/7_Days_to_Di
 
 ## What can this do?
 ### Functions
+Gradually reclaim the world and the Zones you Control in it 
 
 ## Console and Config
 
