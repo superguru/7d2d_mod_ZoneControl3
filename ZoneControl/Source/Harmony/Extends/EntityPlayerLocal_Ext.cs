@@ -1,8 +1,7 @@
 ﻿using HarmonyLib;
 using ZoneControl.Infrastructure;
 using ZoneControl.Synchronisation;
-
-namespace ZoneControl.Harmony.Extends;
+using static ZoneControl.Harmony.Extends.GameManager_Ext;
 
 [HarmonyPatch(typeof(EntityPlayerLocal))]
 #if DEBUG
@@ -39,7 +38,27 @@ internal static class EntityPlayerLocal_Ext
             SinglePlayerTasks.HandleGameStartTasks();
             IsFirstSpawnDone = true;
 
+#if DEBUG
             ModLogger.DebugLog($"{d_MethodName}: Player '{__instance.GetDebugName()}' game start events invoked");
+#endif
+        }
+    }
+
+    static EntityPlayerLocal_Ext()
+    {
+        OnSaveAndCleanupWorld += ResetFirstSpawnState;
+    }
+
+    private static void ResetFirstSpawnState(GameManager instance)
+    {
+        const string d_MethodName = nameof(ResetFirstSpawnState);
+
+        lock (s_lock)
+        {
+            IsFirstSpawnDone = false;
+#if DEBUG
+            ModLogger.DebugLog($"{d_MethodName}: First spawn state reset for game '{instance}'");
+#endif
         }
     }
 }

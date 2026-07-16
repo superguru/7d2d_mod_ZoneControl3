@@ -140,6 +140,7 @@
     <Compile Include="Source\Harmony\Commands\ConsoleCmdZcHideLandClaimNavObject.cs" />
     <Compile Include="Source\Harmony\Commands\ConsoleCmdZcHelp.cs" />
     <Compile Include="Source\Harmony\Commands\ZcCommandRegistry.cs" />
+    <Compile Include="Source\Harmony\Extends\GameManager_Ext.cs" />
     <Compile Include="Source\Harmony\Extends\EntityPlayerLocal_Ext.cs" />
     <Compile Include="Source\Harmony\Extends\XUiC_MapArea_Ext.cs" />
     <Compile Include="Source\Harmony\Mod_Init.cs" />
