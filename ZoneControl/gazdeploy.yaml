@@ -4,7 +4,7 @@
 #   "$(SolutionDir)..\GAZ Mod Deploy\deploy_target_build.py" --config "$(ProjectDir)gzdeploy.yaml" $(Configuration)
 
 mod_name: ZoneControl3
-project_dir: "D:/Projects/7 Days To Die/projects/Zone Control 3/ZoneControl/"
+project_dir: "D:/Projects/7 Days To Die/projects/Zone Control 3/ZoneControl"
 output_dir: bin/{build_target}  # {build_target} is substituted at runtime
 
 # --- Flags ---
