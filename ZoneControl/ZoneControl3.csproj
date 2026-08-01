@@ -157,6 +157,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="gazdeploy.yaml" />
+    <None Include="ModPackage\Docs\CHANGELOG.md" />
     <None Include="ModPackage\Docs\README.md" />
     <None Include="ModPackage\modconfig.json" />
     <None Include="packages.config" />
