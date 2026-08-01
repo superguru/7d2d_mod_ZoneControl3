@@ -3,11 +3,12 @@ I would appreciate it if you could [support me on Ko-fi](https://ko-fi.com/gazor
 
 [![Support me on Ko-fi](https://raw.githubusercontent.com/superguru/superguru/refs/heads/master/images/superguru-kofi-orange.png)](https://ko-fi.com/gazorper)
 
-If you want mod support, please report any bugs or issues you find on [Discord at GAZ World](https://discord.gg/qx95uq2e8T), and I'll investigate it when I find the time.
 
-The people on Discord are quite helpful too.
+Please go to [![#zone-control3](https://img.shields.io/badge/%23zone--control3-4c5fd7)](https://discord.gg/hAF5T4P9pE) on [![Discord](https://img.shields.io/badge/%23Discord-f46f30)](https://discord.gg/q4uajGgpr) for mod support.
 
-This is a [7 Days to Die](https://store.steampowered.com/app/251570/7_Days_to_Die) mod.
+Also see [Docs\README.md](https://raw.githubusercontent.com/superguru/7d2d_mod_ZoneControl3/refs/heads/master/ZoneControl/ModPackage/Docs/README.md) in the mod package for the full documentation.
+
+You should also look at the Media Gallery on the mod distribution site where you downloaded this mod from.
 
 ## 💾What to download
 
@@ -98,4 +99,4 @@ A long, long time ago...
 ### ❌Not considered compatible:
 
 
-*** PACKAGED aka MOD FRONT PAGE `README.md` EOF ***
+*** PACKAGED aka MOD DOCUMENTATION PAGE README.md EOF ***
