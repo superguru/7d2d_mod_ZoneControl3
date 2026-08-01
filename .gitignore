@@ -8,9 +8,12 @@ Uploads/
 NexusFiles/
 Troubleshooting/
 ModPackage.WIP/
+GeneralWIP/
 
 # Generated files
 README.bbcode.txt
+**/Resources/*.manifest
+**/Resources/*.unity3d
 
 # Code quality check files left from the code quality check Python scripts
 code_check_results*.txt
