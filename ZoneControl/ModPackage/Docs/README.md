@@ -18,6 +18,9 @@ You should also look at the Media Gallery on the mod distribution site where you
 ### Functions
 Gradually reclaim the world and the Zones you Control in it 
 
+Stop areas from being repopulated
+
+
 ## Console and Config
 
 ### ⌨️Console Commands (when you press F1)

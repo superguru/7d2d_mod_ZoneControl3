@@ -1,0 +1,60 @@
+{
+  "ConcreteBlock": {
+    "vertices": [
+      /* Outer Box (8 vertices) */
+      0.5, 0.5, 0.5,  0, 1, 0,  1, 1,
+     -0.5, 0.5, 0.5,  0, 1, 0,  0, 1,
+     -0.5,-0.5, 0.5,  0, 1, 0,  0, 0,
+      0.5,-0.5, 0.5,  0, 1, 0,  1, 0,
+      /* ... (include all 6 faces of outer box with correct normals/UVs) */
+      /* Inner Hole (20 vertices for 5 faces: bottom + 4 sides) */
+      /* Bottom face (y=0.3): x:[-0.3, 0.3], z:[-0.3, 0.3] */
+     -0.3, 0.3,-0.3,  0,-1, 0,  0, 0,
+      0.3, 0.3,-0.3,  0,-1, 0,  1, 0,
+      0.3, 0.3, 0.3,  0,-1, 0,  1, 1,
+     -0.3, 0.3, 0.3,  0,-1, 0,  0, 1,
+      /* Side faces (normals pointing into hole) */
+     -0.3, 0.3,-0.3, -1, 0, 0,  0, 0,
+     -0.3, 0.5,-0.3, -1, 0, 0,  0, 1,
+     -0.3, 0.5, 0.3, -1, 0, 0,  1, 1,
+     -0.3, 0.3, 0.3, -1, 0, 0,  1, 0,
+      /* ... (repeat for x=+0.3, z=-0.3, z=+0.3 faces) */
+    ],
+    "indices": [
+      /* Outer box indices (36 indices) */
+      0, 1, 2, 0, 2, 3, ...
+      /* Inner hole indices (60 indices) */
+      8, 9, 10, 8, 10, 11, ...
+    ]
+  },
+  "PipeU": {
+    "vertices": [
+      /* Half-Torus Curve (Radius R=0.1, r=0.04, Center y=0.34) */
+      /* 8 segments -> ~32 vertices */
+      /* Two Cylinder Legs (Height 0.16, Radius 0.04) */
+      /* 8 segments each -> ~32 vertices per leg */
+    ],
+    "indices": [
+      /* Curve indices (~48) + Leg indices (~96 each) */
+    ]
+  },
+  "CylinderPlug": {
+    "vertices": [
+      /* Cylinder (Radius 0.08, Height 0.4, 12 segments) */
+      /* ~36 vertices including caps */
+    ],
+    "indices": [
+      /* ~96 indices */
+    ]
+  },
+  "SilhouettePlane": {
+    "vertices": [
+      /* Quad (Size 0.6x0.6) */
+     -0.3, 0.3, 0,  0, 1, 0,  0, 1,
+      0.3, 0.3, 0,  0, 1, 0,  1, 1,
+      0.3,-0.3, 0,  0, 1, 0,  1, 0,
+     -0.3,-0.3, 0,  0, 1, 0,  0, 0,
+    ],
+    "indices": [ 0, 1, 2, 0, 2, 3 ]
+  }
+}

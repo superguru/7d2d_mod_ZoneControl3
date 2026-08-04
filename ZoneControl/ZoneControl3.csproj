@@ -155,16 +155,17 @@
     <Compile Include="Source\Synchronisation\SynchronisationControl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="gazdeploy.yaml" />
-    <None Include="ModPackage\Docs\CHANGELOG.md" />
-    <None Include="ModPackage\Docs\README.md" />
-    <None Include="ModPackage\modconfig.json" />
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ModPackage\Config\blocks.xml" />
+    <Content Include="ModPackage\Config\recipes.xml" />
+    <None Include="ModPackage\Config\Localization.csv" />
+    <Content Include="ModPackage\Docs\CHANGELOG.md" />
+    <Content Include="ModPackage\Docs\README.md" />
+    <Content Include="ModPackage\modconfig.json" />
     <Content Include="ModPackage\ModInfo.xml" />
+    <Content Include="app.config" />
+    <Content Include="gazdeploy.yaml" />
+    <Content Include="packages.config" />
+    <Content Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets')" />

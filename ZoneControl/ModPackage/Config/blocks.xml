@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <blocks>
 
 <append xpath="/blocks">
-
+  
   <block name="zcClaimBlock">
     <property name="CreativeMode" value="Player" />
-	<property name="Shape" value="ModelEntity" />
+    <property name="Shape" value="ModelEntity" />
     <property name="Model" value="#@modfolder:Resources/zcAssets.unity3d?zcClaimBlock"/>
     <property name="CustomIcon" value="zcClaimBlock"/>
+    <property name="DisplayInfo" value="Custom" />
+    <property name="DisplayType" value="blockHardened" />
     <property name="Material" value="Mmetal_weak" />
-    <property class="RepairItems">
-        <property name="resourceForgedSteel" value="20" />
-    </property>
-	<property name="Stacknumber" value="1" />
-	<property name="MaxDamage" value="7000" />
-	<property name="StartDamage" value="0" />
-	<property name="PassThroughDamage" value="true" />
-  	<property name="WaterFlow" value="permitted"/>
+    <property name="Stacknumber" value="10" />
+    <property name="MaxDamage" value="7000" />
+    <property name="StartDamage" value="0" />
+    <property name="PassThroughDamage" value="true" />
     <property name="OnlySimpleRotations" value="true"/>
-    <property name="Collide" value="melee,rocket"/>
-  	<property name="Place" value="TowardsPlacer"/>
+    <property name="Place" value="TowardsPlacer"/>
     <property class="RepairItems">
-  	     <property name="resourceForgedSteel" value="2"/>
-  	     <property name="resourceElectricParts" value="6"/>
-  	</property>
+      <property name="resourceForgedSteel" value="2"/>
+      <property name="resourceElectricParts" value="6"/>
+    </property>
     <property name="SellableToTrader" value="false"/>
-  	<drop event="Harvest" name="resourceElectricParts" count="2,6" tag="salvageHarvest"/>
+    <drop event="Harvest" name="resourceElectricParts" count="2,6" tag="salvageHarvest"/>
     <drop event="Destroy" count="0"/>
-	<property name="Group" value="Limited,Building,advBuilding" />
-	<property name="FilterTags" value="MC_playerBlocks,SC_decor" />
+    <property name="Group" value="Limited,Building,advBuilding" />
+    <property name="FilterTags" value="MC_playerBlocks,SC_decor" />
   </block>
 </append>
 
+  
 <!--
     <block name="decoEntityMetalMaster">
         <property name="Texture" value="282" />
@@ -48,6 +47,5 @@
         <property name="FilterTags" value="MC_building" />
     </block>
 -->
-
 
 </blocks>

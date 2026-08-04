@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Standardized order for mod ingredients (based on recipes.xml):
+    resourceCloth
+    resourceScrapIron
+    resourceScrapBrass
+    resourceMetalPipe
+    resourceForgedIron
+    resourceForgedSteel
+    resourceScrapPolymers
+    resourceLeather
+    resourceGlue
+    resourceDuctTape
+    resourceOil
+    resourceElectricParts
+    resourceMechanicalParts
+    resourceSpring
+    resourceSewingKit
+    resourceAcid
+    resourceBrokenGlass
+    resourceCrushedSand
+    resourceCoal
+    oddball resources like a flashlight at the bottom
+-->
+
+<recipes>
+  
+  <append xpath="/recipes">
+    
+    <recipe name="zcClaimBlock" count="1" craft_time="20" craft_area="workbench" tags="workbenchCrafting,perkAdvancedEngineering">
+      <ingredient name="resourceScrapBrass" count="24" />
+      <ingredient name="resourceMetalPipe" count="6" />
+      <ingredient name="resourceForgedIron" count="1" />
+      <ingredient name="resourceElectricParts" count="12" />
+      <ingredient name="resourceMechanicalParts" count="24" />
+    </recipe>
+    
+  </append>
+
+</recipes>
