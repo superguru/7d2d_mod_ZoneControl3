@@ -28,24 +28,7 @@
     <property name="Group" value="Limited,Building,advBuilding" />
     <property name="FilterTags" value="MC_playerBlocks,SC_decor" />
   </block>
-</append>
 
-  
-<!--
-    <block name="decoEntityMetalMaster">
-        <property name="Texture" value="282" />
-        <property name="IsTerrainDecoration" value="true" />
-        <property name="EconomicValue" value="5" />
-        <property name="EconomicBundleSize" value="1" />
-        <drop event="Harvest" name="resourceScrapIron" count="10" tag="allHarvest,perkJunkMiner" />
-        <drop event="Destroy" count="0" />
-        <drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1" />
-        <property name="UpgradeSound" value="place_block_metal" />
-        <property name="SortOrder1" value="M240" />
-        <property name="SortOrder2" value="0000" />
-        <property name="Group" value="Decor/Miscellaneous" />
-        <property name="FilterTags" value="MC_building" />
-    </block>
--->
+</append>
 
 </blocks>
