@@ -13,7 +13,7 @@ internal static class GameManager_Ext
     private static bool IsFirstSpawnDone { get; set; } = false;
 
     public delegate void OnSaveAndCleanupWorldDelegate(GameManager instance);
-    public static event OnSaveAndCleanupWorldDelegate? OnSaveAndCleanupWorld;
+    public static event OnSaveAndCleanupWorldDelegate OnSaveAndCleanupWorld;
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(GameManager.SaveAndCleanupWorld))]
@@ -26,6 +26,11 @@ internal static class GameManager_Ext
 
         lock (s_lock)
         {
+            if (OnSaveAndCleanupWorld == null)
+            {
+                ModLogger.DebugLog($"{d_MethodName}: No game cleanup event configured");
+            }
+
             OnSaveAndCleanupWorld?.Invoke(__instance);
 #if DEBUG
             ModLogger.DebugLog($"{d_MethodName}: Game '{__instance}' game end events invoked");
