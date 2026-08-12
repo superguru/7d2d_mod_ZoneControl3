@@ -8,42 +8,46 @@ internal static class NavObjectControl
     internal const string LAND_CLAIM_NAV_OBJECT = "land_claim";
     internal const string SLEEPING_BAG_NAV_OBJECT = "sleeping_bag";
 
-    internal static void HideLandClaimFromCompass()
+    internal static void HideLandClaimsFromCompass()
     {
-        HideNavObjectOnCompass(LAND_CLAIM_NAV_OBJECT);
+        HideNavObjectsOnCompass(LAND_CLAIM_NAV_OBJECT);
     }
 
-    internal static void HideSleepingBagFromCompass()
+    internal static void HideSleepingBagsFromCompass()
     {
-        HideNavObjectOnCompass(SLEEPING_BAG_NAV_OBJECT);
+        HideNavObjectsOnCompass(SLEEPING_BAG_NAV_OBJECT);
     }
 
-    private static void HideNavObjectOnCompass(string className)
+    private static void HideNavObjectsOnCompass(string className)
     {
-        const string d_MethodName = nameof(HideNavObjectOnCompass);
+        const string d_MethodName = nameof(HideNavObjectsOnCompass);
 
-        var navObject = GetNavObjectByClassName(className);
-        if (navObject == null)
+        var navObjects = GetNavObjectsByClassName(className);
+        if (navObjects == null)
         {
             ModLogger.DebugLog($"{d_MethodName}: Could not find {className} on compass");
             return;
         }
 
-        var prevState = navObject.hiddenOnCompass;
-        navObject.hiddenOnCompass = true;
-        var newState = navObject.hiddenOnCompass;
+        foreach (var navObject in navObjects)
+        {
 
-        ModLogger.DebugLog($"{d_MethodName}: {className} compass visibility changed from {prevState} to {newState}");
+            var prevState = !navObject.hiddenOnCompass;
+            navObject.hiddenOnCompass = true;
+            var newState = !navObject.hiddenOnCompass;
+
+            ModLogger.DebugLog($"{d_MethodName}: {className} compass visibility changed from {prevState} to {newState}");
+        }
     }
 
-    internal static NavObject GetLandClaimNavObject()
+    internal static IReadOnlyList<NavObject> GetLandClaimNavObjects()
     {
-        return GetNavObjectByClassName(LAND_CLAIM_NAV_OBJECT);
+        return GetNavObjectsByClassName(LAND_CLAIM_NAV_OBJECT);
     }
 
-    internal static NavObject GetSleepingBagNavObject()
+    internal static IReadOnlyList<NavObject> GetSleepingBagNavObjects()
     {
-        return GetNavObjectByClassName(SLEEPING_BAG_NAV_OBJECT);
+        return GetNavObjectsByClassName(SLEEPING_BAG_NAV_OBJECT);
     }
 
     internal static IReadOnlyList<NavObject> GetNavObjectList()
@@ -51,15 +55,17 @@ internal static class NavObjectControl
         return NavObjectManager.Instance?.NavObjectList;
     }
 
-    internal static NavObject GetNavObjectByClassName(string className)
+    internal static IReadOnlyList<NavObject> GetNavObjectsByClassName(string className)
     {
         if (string.IsNullOrEmpty(className) || string.IsNullOrWhiteSpace(className))
         {
-            return null;
+            return []; // Return an empty list for invalid input
         }
 
         IReadOnlyList<NavObject> navObjects = GetNavObjectList();
         int maxNavObjects = navObjects?.Count ?? 0;
+
+        var matchingObjects = new List<NavObject>(maxNavObjects);
         for (int i = 0; i < maxNavObjects; i++)
         {
             var navObject = navObjects[i];
@@ -72,13 +78,18 @@ internal static class NavObjectControl
 
             if (className.Equals(navObjectClassName, System.StringComparison.InvariantCulture))
             {
-                return navObject;
+                matchingObjects.Add(navObject);
             }
         }
 
-        ModLogger.DebugLog($"Could not find NavObject({className}) in all {maxNavObjects} known NavObjects");
-        return null;  // Not found
+        if (matchingObjects.Count == 0)
+        {
+            ModLogger.DebugLog($"Could not find NavObject({className}) in all {maxNavObjects} known NavObjects");
+        }
+
+        return matchingObjects;
     }
+
 
     internal static string GetNavObjectClassName(NavObject navObject)
     {

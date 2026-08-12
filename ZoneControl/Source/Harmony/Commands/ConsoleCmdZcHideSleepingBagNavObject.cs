@@ -21,7 +21,7 @@ public class ConsoleCmdZcHideSleepingBagNavObject : ConsoleCmdAbstract
 #if DEBUG
             ModLogger.Info($"Executing {d_methodName}");
 #endif
-            NavObjectControl.HideSleepingBagFromCompass();
+            NavObjectControl.HideSleepingBagsFromCompass();
         }
         catch (Exception e)
         {

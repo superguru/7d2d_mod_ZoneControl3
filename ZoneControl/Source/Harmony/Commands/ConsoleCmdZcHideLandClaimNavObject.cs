@@ -21,7 +21,7 @@ public class ConsoleCmdZcHideLandClaimNavObject : ConsoleCmdAbstract
 #if DEBUG
             ModLogger.Info($"Executing {d_methodName}");
 #endif
-            NavObjectControl.HideLandClaimFromCompass();
+            NavObjectControl.HideLandClaimsFromCompass();
         }
         catch (Exception e)
         {
