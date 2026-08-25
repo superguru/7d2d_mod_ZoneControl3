@@ -13,9 +13,9 @@ internal sealed class ModConfigData
     [JsonProperty("isDebug")]
     public bool IsDebug { get; set; } = false;
 
-    [JsonProperty("hideLandClaimFromCompassOnStart")]
-    public bool HideLandClaimFromCompassOnStart { get; set; } = true;
+    [JsonProperty("hideLandClaimsFromCompassOnStart")]
+    public bool HideLandClaimsFromCompassOnStart { get; set; } = true;
 
-    [JsonProperty("hideSleepingBagFromCompassOnStart")]
-    public bool HideSleepingBagFromCompassOnStart { get; set; } = true;
+    [JsonProperty("hideSleepingBagsFromCompassOnStart")]
+    public bool HideSleepingBagsFromCompassOnStart { get; set; } = true;
 }

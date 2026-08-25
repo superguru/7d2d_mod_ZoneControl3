@@ -13,7 +13,7 @@ internal static class SinglePlayerTasks
 
     private static void HandleHideLandClaimFromCompassOnStart()
     {
-        if (ModConfig.HideLandClaimFromCompassOnStart())
+        if (ModConfig.HideLandClaimsFromCompassOnStart())
         {
             NavObjectControl.HideLandClaimsFromCompass();
         }
@@ -21,7 +21,7 @@ internal static class SinglePlayerTasks
 
     private static void HandleHideSleepingBagFromCompassOnStart()
     {
-        if (ModConfig.HideSleepingBagFromCompassOnStart())
+        if (ModConfig.HideSleepingBagsFromCompassOnStart())
         {
             NavObjectControl.HideSleepingBagsFromCompass();
         }

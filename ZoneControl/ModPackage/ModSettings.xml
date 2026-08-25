@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModSettings>
+  <Global>
+    <Tab name="General">
+      <Category name="General" displayKey="zcSettingGeneral" tooltipKey="zcSettingGeneralToolTip">
+        <Switch name="IsDebug" displayKey="zcSettingIsDebug" tooltipKey="zcsSettingIsDebugTooltip" defaultValue="Off" leftValue="Off" rightValue="On" />
+      </Category>
+    </Tab>
+    <Tab name="Map">
+      <Category name="Map" displayKey="zcSettingMap" tooltipKey="zcSettingMapToolTip">
+        <Switch name="HideLandClaimsFromCompassOnStart" displayKey="szSettingMapHideLandClaimsFromCompassOnStart" tooltipKey="szSettingMapHideLandClaimsFromCompassOnStartTooltip" defaultValue="On" leftValue="Off" rightValue="On" />
+        <Switch name="HideSleepingBagsFromCompassOnStart" displayKey="szSettingMapHideSleepingBagsFromCompassOnStart" tooltipKey="szSettingMapHideSleepingsBagFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
+      </Category>
+    </Tab>
+  </Global>
+  <World />
+</ModSettings>

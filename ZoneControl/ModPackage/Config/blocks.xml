@@ -5,6 +5,7 @@
 <append xpath="/blocks">
   
   <block name="zcClaimBlock">
+    <property name="CanMobsSpawnOn" value="true" />
     <property name="CreativeMode" value="Player" />
     <property name="Shape" value="ModelEntity" />
     <property name="Model" value="#@modfolder:Resources/zcAssets.unity3d?zcClaimBlock"/>

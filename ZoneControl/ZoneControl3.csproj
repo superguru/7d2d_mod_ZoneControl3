@@ -18,6 +18,7 @@
     <ModPackageDocReadMeDir>$(MSBuildProjectDirectory)\ModPackage\Docs</ModPackageDocReadMeDir>
     <GAZModDeployDir>D:\Projects\7 Days To Die\projects\GAZ Mod Deploy</GAZModDeployDir>
     <StructuredTextProjectDir>D:\Projects\DotNet\StructuredData\StructuredText</StructuredTextProjectDir>
+    <GearsDLLDir>D:\Projects\Libraries\GearsAPI_DLL</GearsDLLDir>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -133,8 +134,15 @@
       <HintPath>$(GameInstallDir)\Mods\0_TFP_Harmony\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GearsAPI">
+      <HintPath>$(GearsDLLDir)\GearsAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\Configuration\Gears\GearsConversions.cs" />
+    <Compile Include="Source\Configuration\Gears\GearsGeneralSettings.cs" />
+    <Compile Include="Source\Configuration\Gears\GearsMod_Init.cs" />
     <Compile Include="Source\Game\Navigation\NavObjectControl.cs" />
     <Compile Include="Source\Harmony\Commands\ConsoleCmdZcHideSleepingBagNavObject.cs" />
     <Compile Include="Source\Harmony\Commands\ConsoleCmdZcHideLandClaimNavObject.cs" />
@@ -148,6 +156,7 @@
     <Compile Include="Source\Configuration\ModConfig.cs" />
     <Compile Include="Source\Configuration\ModConfigData.cs" />
     <Compile Include="Source\Diagnostics\StackTraceProvider.cs" />
+    <Compile Include="Source\Infrastructure\ConfigVersioning.cs" />
     <Compile Include="Source\Infrastructure\ModInfo.cs" />
     <Compile Include="Source\Infrastructure\ModLogger.cs" />
     <Compile Include="Source\Infrastructure\ModPathManager.cs" />
@@ -164,8 +173,12 @@
     <Content Include="ModPackage\ModInfo.xml" />
     <Content Include="app.config" />
     <Content Include="gazdeploy.yaml" />
+    <Content Include="ModPackage\ModSettings.xml" />
     <Content Include="packages.config" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Source\Harmony\Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets')" />
