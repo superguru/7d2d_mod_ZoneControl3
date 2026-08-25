@@ -3,13 +3,13 @@
   <Global>
     <Tab name="General">
       <Category name="General" displayKey="zcSettingGeneral" tooltipKey="zcSettingGeneralToolTip">
-        <Switch name="IsDebug" displayKey="zcSettingIsDebug" tooltipKey="zcsSettingIsDebugTooltip" defaultValue="Off" leftValue="Off" rightValue="On" />
+        <Switch name="IsDebug" displayKey="zcSettingIsDebug" tooltipKey="zcSettingIsDebugTooltip" defaultValue="Off" leftValue="Off" rightValue="On" />
       </Category>
     </Tab>
     <Tab name="Map">
       <Category name="Map" displayKey="zcSettingMap" tooltipKey="zcSettingMapToolTip">
-        <Switch name="HideLandClaimsFromCompassOnStart" displayKey="szSettingMapHideLandClaimsFromCompassOnStart" tooltipKey="szSettingMapHideLandClaimsFromCompassOnStartTooltip" defaultValue="On" leftValue="Off" rightValue="On" />
-        <Switch name="HideSleepingBagsFromCompassOnStart" displayKey="szSettingMapHideSleepingBagsFromCompassOnStart" tooltipKey="szSettingMapHideSleepingsBagFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
+        <Switch name="HideLandClaimsFromCompassOnStart" displayKey="zcSettingHideLandClaimsFromCompassOnStart" tooltipKey="zcSettingHideLandClaimsFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
+        <Switch name="HideSleepingBagsFromCompassOnStart" displayKey="zcSettingHideSleepingBagsFromCompassOnStart" tooltipKey="zcSettingHideSleepingBagsFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
       </Category>
     </Tab>
   </Global>
