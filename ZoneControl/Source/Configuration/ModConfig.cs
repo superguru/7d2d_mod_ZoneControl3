@@ -58,7 +58,7 @@ internal static class ModConfig
 
             Config = loaded;
             IsConfigLoaded = true;
-            ModLogger.Info($"Config loaded successfully (v{Config.Version}, debug={Config.IsDebug}).");
+            ModLogger.Info($"Config loaded successfully (v{Config.version}, debug={Config.isDebug}).");
         }
         catch (JsonException ex)
         {
@@ -153,10 +153,10 @@ internal static class ModConfig
     /// <returns>True if the config was modified, false otherwise</returns>
     private static bool ValidateVersion()
     {
-        if (string.IsNullOrEmpty(Config.Version))
+        if (string.IsNullOrEmpty(Config.version))
         {
             ModLogger.Warning("Config missing version field, setting to current version");
-            Config.Version = ConfigVersioning.CurrentVersion;
+            Config.version = ConfigVersioning.CurrentVersion;
             return true; // Config was modified
         }
         return false; // No changes made
@@ -172,7 +172,7 @@ internal static class ModConfig
     {
         if (IsConfigLoaded)
         {
-            return Config.ZoneControlSize;
+            return Config.zoneControlSize;
         }
 
         return DEFAULT_ZONE_CONTROL_SIZE;
@@ -192,7 +192,7 @@ internal static class ModConfig
     {
         if (IsConfigLoaded)
         {
-            return Config.LandClaimCount;
+            return Config.landClaimCount;
         }
 
         return DEFAULT_LANDCLAIM_COUNT;
@@ -202,7 +202,7 @@ internal static class ModConfig
     {
         if (IsConfigLoaded)
         {
-            return Config.LandClaimSize;
+            return Config.landClaimSize;
         }
 
         return DEFAULT_LANDCLAIM_SIZE;
@@ -212,19 +212,19 @@ internal static class ModConfig
     #region Map
     internal static bool HideLandClaimsFromCompassOnStart()
     {
-        return IsConfigLoaded && Config.HideLandClaimsFromCompassOnStart;
+        return IsConfigLoaded && Config.hideLandClaimsFromCompassOnStart;
     }
 
     internal static bool HideSleepingBagsFromCompassOnStart()
     {
-        return IsConfigLoaded && Config.HideSleepingBagsFromCompassOnStart;
+        return IsConfigLoaded && Config.hideSleepingBagsFromCompassOnStart;
     }
     #endregion
 
     #region General
     internal static bool IsDebug()
     {
-        return IsConfigLoaded && Config.IsDebug;
+        return IsConfigLoaded && Config.isDebug;
     }
     #endregion
 }

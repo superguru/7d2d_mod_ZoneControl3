@@ -20,33 +20,33 @@ internal static class GearsSettingsRegistry
         [
             GearsSettingFactory.Bool(
                 nameof(ModConfig.IsDebug),
-                c => c.IsDebug,
-                (c, v) => c.IsDebug = v),
+                c => c.isDebug,
+                (c, v) => c.isDebug = v),
         ]),
 
         (MapTab, MapCategory,
         [
             GearsSettingFactory.Bool(
                 nameof(ModConfig.HideLandClaimsFromCompassOnStart),
-                c => c.HideLandClaimsFromCompassOnStart,
-                (c, v) => c.HideLandClaimsFromCompassOnStart = v),
+                c => c.hideLandClaimsFromCompassOnStart,
+                (c, v) => c.hideLandClaimsFromCompassOnStart = v),
             GearsSettingFactory.Bool(
                 nameof(ModConfig.HideSleepingBagsFromCompassOnStart),
-                c => c.HideSleepingBagsFromCompassOnStart,
-                (c, v) => c.HideSleepingBagsFromCompassOnStart = v),
+                c => c.hideSleepingBagsFromCompassOnStart,
+                (c, v) => c.hideSleepingBagsFromCompassOnStart = v),
         ]),
 
         (LandClaimTab, LandClaimCategory,
         [
             GearsSettingFactory.Int(
                 nameof(ModConfig.LandClaimCount),
-                c => c.LandClaimCount,
-                (c, v) => c.LandClaimCount = v,
+                c => c.landClaimCount,
+                (c, v) => c.landClaimCount = v,
                 ModConfig.MIN_LAND_CLAIM_COUNT, ModConfig.MAX_LAND_CLAIM_COUNT, ModConfig.DEFAULT_LANDCLAIM_COUNT),
             GearsSettingFactory.Int(
                 nameof(ModConfig.LandClaimSize),
-                c => c.LandClaimSize,
-                (c, v) => c.LandClaimSize = v,
+                c => c.landClaimSize,
+                (c, v) => c.landClaimSize = v,
                 ModConfig.MIN_LAND_CLAIM_SIZE, ModConfig.MAX_LAND_CLAIM_SIZE, ModConfig.DEFAULT_LANDCLAIM_SIZE),
         ]),
 
@@ -54,8 +54,8 @@ internal static class GearsSettingsRegistry
         [
             GearsSettingFactory.Int(
                 nameof(ModConfig.ZoneControlSize),
-                c => c.ZoneControlSize,
-                (c, v) => c.ZoneControlSize = v,
+                c => c.zoneControlSize,
+                (c, v) => c.zoneControlSize = v,
                 ModConfig.MIN_ZONE_CONTROL_SIZE, ModConfig.MAX_ZONE_CONTROL_SIZE, ModConfig.DEFAULT_ZONE_CONTROL_SIZE),
         ]),
     ];

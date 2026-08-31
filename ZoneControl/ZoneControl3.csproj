@@ -143,6 +143,7 @@
     <Compile Include="Source\Configuration\Gears\GearsConversions.cs" />
     <Compile Include="Source\Configuration\Gears\GearsMod_Init.cs" />
     <Compile Include="Source\Configuration\Gears\GearsSetting.cs" />
+    <Compile Include="Source\Configuration\Gears\GearsSettingFactory.cs" />
     <Compile Include="Source\Configuration\Gears\GearsSettingsRegistry.cs" />
     <Compile Include="Source\Game\Navigation\NavObjectControl.cs" />
     <Compile Include="Source\Harmony\Commands\ConsoleCmdZcHideSleepingBagNavObject.cs" />

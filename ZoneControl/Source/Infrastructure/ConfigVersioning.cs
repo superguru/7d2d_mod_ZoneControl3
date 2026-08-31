@@ -8,7 +8,7 @@ internal class ConfigVersioning
     public const string FirstVersionedConfig = "3.2.0";
 
     /// <summary>
-    /// Current config schema version - always matches ModInfo.Version (lazy loaded)
+    /// Current config schema version - always matches ModInfo.version (lazy loaded)
     /// </summary>
     public static string CurrentVersion
     {
