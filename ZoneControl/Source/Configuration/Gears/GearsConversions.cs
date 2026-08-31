@@ -11,6 +11,13 @@ internal static class GearsConversions
         return a == b;
     }
 
+    public static bool IsEqualValue(string value, int b)
+    {
+        // ~b is a fallback that can never equal b, so a failed parse reads as "not equal"
+        var a = ToInt(value, ~b);
+        return a == b;
+    }
+
     public static bool IsEqualValue(string value, float b)
     {
         var a = ToFloat(value, -b);
