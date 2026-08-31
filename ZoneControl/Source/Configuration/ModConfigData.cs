@@ -13,9 +13,6 @@ internal sealed class ModConfigData
     #endregion
 
     #region Zone
-    #endregion
-
-    #region Zone
     [JsonProperty("zoneControlSize")]
     public int ZoneControlSize { get; set; } = ModConfig.DEFAULT_ZONE_CONTROL_SIZE;
     #endregion

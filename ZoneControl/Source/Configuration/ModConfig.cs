@@ -7,18 +7,7 @@ namespace ZoneControl.Configuration;
 
 internal static class ModConfig
 {
-    internal const int DEFAULT_ZONE_CONTROL_SIZE = 60;
-    internal const int MIN_ZONE_CONTROL_SIZE = 20;
-    internal const int MAX_ZONE_CONTROL_SIZE = 100;
-
-    internal const int DEFAULT_LANDCLAIM_COUNT = 3;
-    internal const int MIN_LAND_CLAIM_COUNT = 1;
-    internal const int MAX_LAND_CLAIM_COUNT = 15;  // 3 per biome
-
-    internal const int DEFAULT_LANDCLAIM_SIZE = 41;
-    internal const int MIN_LAND_CLAIM_SIZE = 30;
-    internal const int MAX_LAND_CLAIM_SIZE = 60;
-
+    #region Schematic
     private const string ConfigFileName = "modconfig.json";
     private static bool IsConfigLoaded { get; set; } = false;
     internal static ModConfigData Config { get; private set; } = new ModConfigData();
@@ -172,21 +161,32 @@ internal static class ModConfig
         }
         return false; // No changes made
     }
+    #endregion
 
-    internal static bool IsDebug()
-    {
-        return IsConfigLoaded && Config.IsDebug;
-    }
+    #region Zone
+    internal const int DEFAULT_ZONE_CONTROL_SIZE = 60;
+    internal const int MIN_ZONE_CONTROL_SIZE = 20;
+    internal const int MAX_ZONE_CONTROL_SIZE = 100;
 
-    internal static bool HideLandClaimsFromCompassOnStart()
+    internal static int ZoneControlSize()
     {
-        return IsConfigLoaded && Config.HideLandClaimsFromCompassOnStart;
-    }
+        if (IsConfigLoaded)
+        {
+            return Config.ZoneControlSize;
+        }
 
-    internal static bool HideSleepingBagsFromCompassOnStart()
-    {
-        return IsConfigLoaded && Config.HideSleepingBagsFromCompassOnStart;
+        return DEFAULT_ZONE_CONTROL_SIZE;
     }
+    #endregion
+
+    #region Land Claim
+    internal const int DEFAULT_LANDCLAIM_COUNT = 3;
+    internal const int MIN_LAND_CLAIM_COUNT = 1;
+    internal const int MAX_LAND_CLAIM_COUNT = 15;  // 3 per biome
+
+    internal const int DEFAULT_LANDCLAIM_SIZE = 41;
+    internal const int MIN_LAND_CLAIM_SIZE = 30;
+    internal const int MAX_LAND_CLAIM_SIZE = 60;
 
     internal static int LandClaimCount()
     {
@@ -207,14 +207,24 @@ internal static class ModConfig
 
         return DEFAULT_LANDCLAIM_SIZE;
     }
+    #endregion
 
-    internal static int ZoneControlSize()
+    #region Map
+    internal static bool HideLandClaimsFromCompassOnStart()
     {
-        if (IsConfigLoaded)
-        {
-            return Config.ZoneControlSize;
-        }
-
-        return DEFAULT_ZONE_CONTROL_SIZE;
+        return IsConfigLoaded && Config.HideLandClaimsFromCompassOnStart;
     }
+
+    internal static bool HideSleepingBagsFromCompassOnStart()
+    {
+        return IsConfigLoaded && Config.HideSleepingBagsFromCompassOnStart;
+    }
+    #endregion
+
+    #region General
+    internal static bool IsDebug()
+    {
+        return IsConfigLoaded && Config.IsDebug;
+    }
+    #endregion
 }
