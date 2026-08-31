@@ -1,15 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModSettings>
   <Global>
-    <Tab name="General">
-      <Category name="General" displayKey="zcSettingGeneral" tooltipKey="zcSettingGeneralToolTip">
-        <Switch name="IsDebug" displayKey="zcSettingIsDebug" tooltipKey="zcSettingIsDebugTooltip" defaultValue="Off" leftValue="Off" rightValue="On" />
+    <Tab name="Zone">
+      <Category name="Zone" displayKey="zcSettingCategoryZone" tooltipKey="zcSettingCategoryZoneToolTip">
+        <Slider name="ZoneControlSize" displayKey="zcSettingZoneControlSize" tooltipKey="zcSettingZoneControlSizeToolTip" value="60" defaultValue="60">
+          <Property type="incrementalValuesInt" increment="1" minValue="20" maxValue="100"/>
+        </Slider>
+      </Category>
+    </Tab>
+    <Tab name="LandClaim">
+      <Category name="LandClaim" displayKey="zcSettingCategoryLandClaim" tooltipKey="zcSettingCategoryLandClaimToolTip">
+        <Slider name="LandClaimCount" displayKey="zcSettingLandClaimCount" tooltipKey="zcSettingLandClaimCountToolTip" value="3" defaultValue="3">
+          <Property type="incrementalValuesInt" increment="1" minValue="1" maxValue="15"/>
+        </Slider>
+        <Slider name="LandClaimSize" displayKey="zcSettingLandClaimSize" tooltipKey="zcSettingLandClaimSizeToolTip" value="41" defaultValue="41">
+          <Property type="incrementalValuesInt" increment="1" minValue="30" maxValue="60"/>
+        </Slider>
       </Category>
     </Tab>
     <Tab name="Map">
-      <Category name="Map" displayKey="zcSettingMap" tooltipKey="zcSettingMapToolTip">
+      <Category name="Map" displayKey="zcSettingCategoryMap" tooltipKey="zcSettingCategoryMapToolTip">
         <Switch name="HideLandClaimsFromCompassOnStart" displayKey="zcSettingHideLandClaimsFromCompassOnStart" tooltipKey="zcSettingHideLandClaimsFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
         <Switch name="HideSleepingBagsFromCompassOnStart" displayKey="zcSettingHideSleepingBagsFromCompassOnStart" tooltipKey="zcSettingHideSleepingBagsFromCompassOnStartToolTip" defaultValue="On" leftValue="Off" rightValue="On" />
+      </Category>
+    </Tab>
+    <Tab name="General">
+      <Category name="General" displayKey="zcSettingCategoryGeneral" tooltipKey="zcSettingCategoryGeneralToolTip">
+        <Switch name="IsDebug" displayKey="zcSettingIsDebug" tooltipKey="zcSettingIsDebugTooltip" defaultValue="Off" leftValue="Off" rightValue="On" />
       </Category>
     </Tab>
   </Global>

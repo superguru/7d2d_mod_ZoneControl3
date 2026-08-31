@@ -35,6 +35,8 @@ public class GearsModAPI : IGearsModApi
 
         ConfigureGeneralCategory();
         ConfigureMapCategory();
+        ConfigureLandClaimCategory();
+        ConfigureZoneCategory();
     }
 
     private void ConfigureGeneralCategory()
@@ -42,14 +44,14 @@ public class GearsModAPI : IGearsModApi
         var generalTab = GearsGlobalSettings.GetTab("General");
         if (generalTab == null)
         {
-            ModLogger.DebugLog($"Global settings loaded, but mapTab is null");
+            ModLogger.DebugLog($"Global settings loaded, but generalTab is null");
             return;
         }
 
         var generalCategory = generalTab.GetCategory("General");
         if (generalCategory == null)
         {
-            ModLogger.DebugLog($"Global settings loaded, but mapCategory is null");
+            ModLogger.DebugLog($"Global settings loaded, but generalCategory is null");
             return;
         }
 
@@ -73,6 +75,44 @@ public class GearsModAPI : IGearsModApi
         }
 
         GearsGeneralSettings.ConfigureMapCategorySettings(mapCategory);
+    }
+
+    private void ConfigureLandClaimCategory()
+    {
+        var landClaimTab = GearsGlobalSettings.GetTab("LandClaim");
+        if (landClaimTab == null)
+        {
+            ModLogger.DebugLog($"Global settings loaded, but landClaimTab is null");
+            return;
+        }
+
+        var landClaimCategory = landClaimTab.GetCategory("LandClaim");
+        if (landClaimCategory == null)
+        {
+            ModLogger.DebugLog($"Global settings loaded, but landClaimCategory is null");
+            return;
+        }
+
+        GearsGeneralSettings.ConfigureLandClaimCategorySettings(landClaimCategory);
+    }
+
+    private void ConfigureZoneCategory()
+    {
+        var zoneTab = GearsGlobalSettings.GetTab("Zone");
+        if (zoneTab == null)
+        {
+            ModLogger.DebugLog($"Global settings loaded, but zoneTab is null");
+            return;
+        }
+
+        var zoneCategory = zoneTab.GetCategory("Zone");
+        if (zoneCategory == null)
+        {
+            ModLogger.DebugLog($"Global settings loaded, but zoneCategory is null");
+            return;
+        }
+
+        GearsGeneralSettings.ConfigureZoneCategorySettings(zoneCategory);
     }
 
     void IGearsModApi.OnWorldSettingsLoaded(IModWorldSettings worldSettings)

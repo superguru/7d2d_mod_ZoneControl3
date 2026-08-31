@@ -7,6 +7,18 @@ namespace ZoneControl.Configuration;
 
 internal static class ModConfig
 {
+    internal const int DEFAULT_ZONE_CONTROL_SIZE = 60;
+    internal const int MIN_ZONE_CONTROL_SIZE = 20;
+    internal const int MAX_ZONE_CONTROL_SIZE = 100;
+
+    internal const int DEFAULT_LANDCLAIM_COUNT = 3;
+    internal const int MIN_LAND_CLAIM_COUNT = 1;
+    internal const int MAX_LAND_CLAIM_COUNT = 15;  // 3 per biome
+
+    internal const int DEFAULT_LANDCLAIM_SIZE = 41;
+    internal const int MIN_LAND_CLAIM_SIZE = 30;
+    internal const int MAX_LAND_CLAIM_SIZE = 60;
+
     private const string ConfigFileName = "modconfig.json";
     private static bool IsConfigLoaded { get; set; } = false;
     internal static ModConfigData Config { get; private set; } = new ModConfigData();
@@ -110,7 +122,21 @@ internal static class ModConfig
     {
         try
         {
-            var configJson = JsonConvert.SerializeObject(Config, Formatting.Indented);
+            string configJson;
+
+            var serializer = JsonSerializer.CreateDefault();
+
+            using (var sw = new StringWriter())
+            using (var writer = new JsonTextWriter(sw))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = ' ';
+                writer.Indentation = 4;
+
+                serializer.Serialize(writer, Config);
+
+                configJson = sw.ToString();
+            }
 
             // Validate serialized config size before writing
             var configBytes = System.Text.Encoding.UTF8.GetByteCount(configJson);
@@ -121,6 +147,7 @@ internal static class ModConfig
             }
 
             File.WriteAllText(path, configJson);
+
 #if DEBUG
             ModLogger.DebugLog($"Config saved successfully ({configBytes} bytes)");
 #endif
@@ -159,5 +186,35 @@ internal static class ModConfig
     internal static bool HideSleepingBagsFromCompassOnStart()
     {
         return IsConfigLoaded && Config.HideSleepingBagsFromCompassOnStart;
+    }
+
+    internal static int LandClaimCount()
+    {
+        if (IsConfigLoaded)
+        {
+            return Config.LandClaimCount;
+        }
+
+        return DEFAULT_LANDCLAIM_COUNT;
+    }
+
+    internal static int LandClaimSize()
+    {
+        if (IsConfigLoaded)
+        {
+            return Config.LandClaimSize;
+        }
+
+        return DEFAULT_LANDCLAIM_SIZE;
+    }
+
+    internal static int ZoneControlSize()
+    {
+        if (IsConfigLoaded)
+        {
+            return Config.ZoneControlSize;
+        }
+
+        return DEFAULT_ZONE_CONTROL_SIZE;
     }
 }

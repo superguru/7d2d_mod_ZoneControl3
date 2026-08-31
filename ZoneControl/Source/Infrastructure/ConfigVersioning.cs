@@ -3,9 +3,9 @@
 internal class ConfigVersioning
 {
     /// <summary>
-    /// The first version to include versioning (2.3.0)
+    /// The first version to include versioning (3.2.0)
     /// </summary>
-    public const string FirstVersionedConfig = "3.0.0";
+    public const string FirstVersionedConfig = "3.2.0";
 
     /// <summary>
     /// Current config schema version - always matches ModInfo.Version (lazy loaded)

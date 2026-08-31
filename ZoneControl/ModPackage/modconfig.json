@@ -1,7 +1,10 @@
 {
     "metaDescription": "RELEASE Configuration file for Zone Control 3 mod package",
-    "version": "3.0.2",
-    "isDebug": false,
+    "version": "3.2.0",
+    "zoneControlSize": 60,
+    "landClaimCount": 3,
+    "landClaimSize": 41,
     "hideLandClaimsFromCompassOnStart": true,
-    "hideSleepingBagsFromCompassOnStart": true
+    "hideSleepingBagsFromCompassOnStart": true,
+    "isDebug": false
 }

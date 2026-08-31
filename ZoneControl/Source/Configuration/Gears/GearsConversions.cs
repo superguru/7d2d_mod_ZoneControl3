@@ -22,6 +22,20 @@ internal static class GearsConversions
         return value ? "On" : "Off";
     }
 
+    internal static string FromInt(int value, int min, int max)
+    {
+        if (value < min)
+        {
+            value = min;
+        }
+        else if (value > max)
+        {
+            value = max;
+        }
+
+        return value.ToString();
+    }
+
     internal static string FromFloat(float value, float min, float max)
     {
         if (value < min)
@@ -52,6 +66,16 @@ internal static class GearsConversions
             return defaultValue;
         }
     }
+    internal static int ToInt(string value, int defaultValue)
+    {
+        if (!int.TryParse(value, out var convertedValue))
+        {
+            convertedValue = defaultValue;
+        }
+
+        return convertedValue;
+    }
+
     internal static float ToFloat(string value, float defaultValue)
     {
         if (!float.TryParse(value, out var convertedValue))
