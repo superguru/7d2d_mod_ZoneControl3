@@ -20,7 +20,7 @@ internal class SynchronisationControl
 
         if (ShouldProcessPlayerSpawn(data))
         {
-            ModLogger.DebugLog($"Handling player spwan: {spawnDescription}");
+            ModLogger.DebugLog($"Handling player spawn: {spawnDescription}");
 
             // Handle the synchronisation tasks
         }
