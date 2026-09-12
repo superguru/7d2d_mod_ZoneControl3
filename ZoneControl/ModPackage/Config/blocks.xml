@@ -10,7 +10,7 @@
     <property name="Class" value="CompositeTileEntity" />
     <property class="CompositeFeatures">
       <property class="TEFeatureZoneControl">
-        <property name="BorderMaterial" value="#@modfolder:Resources/zcAssets.unity3d?zcClaimBorderMatPurple" />
+        <property name="BorderMaterial" value="#@modfolder:Resources/zcAssets.unity3d?Materials/zcClaimBorderMatPurple" />
       </property>
     </property>
     <property name="Shape" value="ModelEntity" />
