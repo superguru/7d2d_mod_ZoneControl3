@@ -1,5 +1,5 @@
 {
-    "metaDescription": "RELEASE Configuration file for Zone Control 3 mod package",
+    "metaDescription": "RELEASE Configuration file for Zone Control mod package",
     "version": "3.2.0",
     "zoneControlSize": 60,
     "landClaimCount": 3,

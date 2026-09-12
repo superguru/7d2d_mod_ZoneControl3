@@ -9,18 +9,23 @@ internal static class ModConfig
 {
     #region Schematic
     private const string ConfigFileName = "modconfig.json";
-    private static bool IsConfigLoaded { get; set; } = false;
-    internal static ModConfigData Config { get; private set; } = new ModConfigData();
+    private const string DefaultsFileName = "modconfig.defaults.json";
+    private const string LegacyConfigFileName = "config.json";
+
+    private const string DefaultMetaDescription = "RELEASE Configuration file for Zone Control mod package";
+    private const string UserMetaDescription = "USER Configuration file for Zone Control mod package";
 
     /// <summary>
     /// Maximum allowed config file size in bytes (1KB) to prevent abuse
     /// </summary>
     private const long MaxConfigFileSize = 1024;
 
+    private static bool IsConfigLoaded { get; set; } = false;
+    internal static ModConfigData Config { get; private set; } = new ModConfigData();
+
     /// <summary>
     /// Gets the full path to the configuration file
     /// </summary>
-    /// <returns>Full path to the config.json file</returns>
     private static string GetConfigFilePath()
     {
         return Path.Combine(ModPathManager.GetConfigPath(true), ConfigFileName);
@@ -28,46 +33,100 @@ internal static class ModConfig
 
     internal static void LoadConfig()
     {
-        var path = Path.Combine(ModPathManager.GetConfigPath(true), ConfigFileName);
-        ModLogger.Info($"Loading config from {path}");
+        var configDir = ModPathManager.GetConfigPath(true);
+        var defaults = ReadConfigData(Path.Combine(configDir, DefaultsFileName));
+        var configPath = Path.Combine(configDir, ConfigFileName);
+        var legacyPath = Path.Combine(configDir, LegacyConfigFileName);
+
+        var defaultsVersion = defaults?.version;
+
+        ModConfigData result;
+        bool shouldSave = false;
+
+        var existing = ReadConfigData(configPath);
+        if (existing != null)
+        {
+            if (defaults != null && IsOlderVersion(existing.version, defaultsVersion))
+            {
+                // Upgrade: start from defaults, overlay the user's existing values, and bump to the current version.
+                result = defaults;
+                PopulateFromFile(configPath, result);
+                result.version = defaultsVersion;
+                shouldSave = true;
+            }
+            else
+            {
+                result = existing;
+            }
+        }
+        else
+        {
+            // No user config yet. Start from defaults and overlay a legacy config.json if present.
+            result = defaults ?? new ModConfigData();
+            if (File.Exists(legacyPath))
+            {
+                PopulateFromFile(legacyPath, result);
+            }
+            result.version = defaultsVersion ?? result.version;
+            shouldSave = true;
+        }
+
+        Config = result;
+        IsConfigLoaded = true;
+
+        if (shouldSave)
+        {
+            SaveConfig();
+        }
+
+        ModLogger.Info($"Config loaded successfully (v{Config.version}, debug={Config.isDebug}).");
+    }
+
+    private static ModConfigData ReadConfigData(string path)
+    {
+        if (!File.Exists(path))
+        {
+            return null;
+        }
 
         try
         {
-            var fileInfo = new FileInfo(path);
-
-            if (!fileInfo.Exists)
-            {
-                ModLogger.Error($"Config file not found at {path}. Using defaults.");
-                return;
-            }
-
-            if (fileInfo.Length > MaxConfigFileSize)
-            {
-                ModLogger.Error($"Config file exceeds maximum allowed size of {MaxConfigFileSize} bytes. Using defaults.");
-                return;
-            }
-
-            var json = File.ReadAllText(path);
-            var loaded = JsonConvert.DeserializeObject<ModConfigData>(json);
-
-            if (loaded == null)
-            {
-                ModLogger.Error("Config file deserialized to null. Using defaults.");
-                return;
-            }
-
-            Config = loaded;
-            IsConfigLoaded = true;
-            ModLogger.Info($"Config loaded successfully (v{Config.version}, debug={Config.isDebug}).");
+            return JsonConvert.DeserializeObject<ModConfigData>(File.ReadAllText(path));
         }
-        catch (JsonException ex)
+        catch (Exception ex)
         {
-            ModLogger.Error("Failed to parse config file. Using defaults.", ex);
+            ModLogger.Error($"Failed to read config file '{path}'.", ex);
+            return null;
         }
-        catch (IOException ex)
+    }
+
+    private static void PopulateFromFile(string path, ModConfigData target)
+    {
+        try
         {
-            ModLogger.Error("Failed to read config file. Using defaults.", ex);
+            JsonConvert.PopulateObject(File.ReadAllText(path), target);
         }
+        catch (Exception ex)
+        {
+            ModLogger.Error($"Failed to merge config file '{path}'.", ex);
+        }
+    }
+
+    private static bool IsOlderVersion(string existingVersion, string defaultsVersion)
+    {
+        if (string.IsNullOrEmpty(existingVersion))
+        {
+            return true;
+        }
+        if (string.IsNullOrEmpty(defaultsVersion))
+        {
+            return false;
+        }
+        if (Version.TryParse(existingVersion, out var existing) && Version.TryParse(defaultsVersion, out var defaults))
+        {
+            return existing < defaults;
+        }
+        return string.CompareOrdinal(existingVersion, defaultsVersion) < 0;
     }
 
     /// <summary>
@@ -75,33 +134,7 @@ internal static class ModConfig
     /// </summary>
     public static void SaveConfig()
     {
-        ValidateConfig(saveAlways: true);
-    }
-
-    /// <summary>
-    /// Validates and corrects configuration values. Saves config if any changes are made.
-    /// </summary>
-    private static void ValidateConfig(bool saveAlways = false)
-    {
-        bool configChanged = false;
-
-        // Track if any validation methods make changes
-        configChanged |= ValidateVersion();
-
-        // Save config if any changes were made during validation
-        if (configChanged || saveAlways)
-        {
-            try
-            {
-                var configPath = GetConfigFilePath();
-                SaveConfig(configPath);
-                ModLogger.DebugLog("Validated config saved to config file.");
-            }
-            catch (Exception ex)
-            {
-                ModLogger.Error($"Failed to save config after validation corrections: {ex.Message}", ex);
-            }
-        }
+        SaveConfig(GetConfigFilePath());
     }
 
     /// <summary>
@@ -109,6 +142,8 @@ internal static class ModConfig
     /// </summary>
     private static void SaveConfig(string path)
     {
+        ApplyMetaDescription();
+
         try
         {
             string configJson;
@@ -147,19 +182,12 @@ internal static class ModConfig
         }
     }
 
-    /// <summary>
-    /// Validates and corrects the version field.
-    /// </summary>
-    /// <returns>True if the config was modified, false otherwise</returns>
-    private static bool ValidateVersion()
+    private static void ApplyMetaDescription()
     {
-        if (string.IsNullOrEmpty(Config.version))
+        if (string.IsNullOrEmpty(Config.metaDescription) || Config.metaDescription == DefaultMetaDescription)
         {
-            ModLogger.Warning("Config missing version field, setting to current version");
-            Config.version = ConfigVersioning.CurrentVersion;
-            return true; // Config was modified
+            Config.metaDescription = UserMetaDescription;
         }
-        return false; // No changes made
     }
     #endregion
 
@@ -174,7 +202,6 @@ internal static class ModConfig
         {
             return Config.zoneControlSize;
         }
-
         return DEFAULT_ZONE_CONTROL_SIZE;
     }
     #endregion
@@ -194,7 +221,6 @@ internal static class ModConfig
         {
             return Config.landClaimCount;
         }
-
         return DEFAULT_LANDCLAIM_COUNT;
     }
 
@@ -204,7 +230,6 @@ internal static class ModConfig
         {
             return Config.landClaimSize;
         }
-
         return DEFAULT_LANDCLAIM_SIZE;
     }
     #endregion

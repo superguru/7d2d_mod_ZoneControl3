@@ -134,7 +134,6 @@
     <Compile Include="Source\Configuration\ModConfig.cs" />
     <Compile Include="Source\Configuration\ModConfigData.cs" />
     <Compile Include="Source\Diagnostics\StackTraceProvider.cs" />
-    <Compile Include="Source\Infrastructure\ConfigVersioning.cs" />
     <Compile Include="Source\Infrastructure\ModInfo.cs" />
     <Compile Include="Source\Infrastructure\ModLogger.cs" />
     <Compile Include="Source\Infrastructure\ModPathManager.cs" />
@@ -147,7 +146,7 @@
     <None Include="ModPackage\Config\Localization.csv" />
     <Content Include="ModPackage\Docs\CHANGELOG.md" />
     <Content Include="ModPackage\Docs\README.md" />
-    <Content Include="ModPackage\modconfig.json" />
+    <Content Include="ModPackage\modconfig.defaults.json" />
     <Content Include="ModPackage\ModInfo.xml" />
     <Content Include="app.config" />
     <Content Include="gazdeploy.yaml" />
