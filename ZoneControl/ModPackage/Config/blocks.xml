@@ -7,6 +7,12 @@
   <block name="zcClaimBlock">
     <property name="CanMobsSpawnOn" value="true" />
     <property name="CreativeMode" value="Player" />
+    <property name="Class" value="CompositeTileEntity" />
+    <property class="CompositeFeatures">
+      <property class="TEFeatureZoneControl">
+        <property name="BorderMaterial" value="#@modfolder:Resources/zcAssets.unity3d?zcClaimBorderMatPurple" />
+      </property>
+    </property>
     <property name="Shape" value="ModelEntity" />
     <property name="Model" value="#@modfolder:Resources/zcAssets.unity3d?zcClaimBlock"/>
     <property name="CustomIcon" value="zcClaimBlock"/>

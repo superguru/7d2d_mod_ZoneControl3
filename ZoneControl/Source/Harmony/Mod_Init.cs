@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using ZoneControl.Configuration;
+using ZoneControl.Game.LandClaim;
 using ZoneControl.Synchronisation;
 
 #if DEBUG
@@ -36,10 +37,16 @@ public class ZoneControl3_Mod : IModApi
         harmony.PatchAll(Assembly.GetExecutingAssembly());
 
         HookSynchronisationEvents();
+        HookLandClaimEvents();
     }
 
     private void HookSynchronisationEvents()
     {
         ModEvents.PlayerSpawnedInWorld.RegisterHandler(SynchronisationControl.PlayerSpawnedInWorld);
+    }
+
+    private void HookLandClaimEvents()
+    {
+        ModEvents.GameStarting.RegisterHandler(LandClaimGamePrefs.OnGameStarting);
     }
 }
