@@ -5,17 +5,26 @@ namespace ZoneControl.Game.ZoneClaim;
 
 internal static class ZoneClaimRegistry
 {
-    private static readonly object Lock = new();
-    private static readonly HashSet<Vector3i> Positions = [];
+    internal sealed class ZoneClaim
+    {
+        public Vector3i Min;
+        public Vector3i Max;
+    }
 
-    internal static void Register(Vector3i position)
+    private static readonly object Lock = new();
+    private static readonly Dictionary<Vector3i, ZoneClaim> Zones = [];
+
+    internal static void Register(Vector3i position, Vector3i min, Vector3i max)
     {
         lock (Lock)
         {
-            if (Positions.Add(position))
+            Zones[position] = new ZoneClaim
             {
-                ModLogger.DebugLog($"Zone claim registered at {position}");
-            }
+                Min = min,
+                Max = max
+            };
+
+            ModLogger.DebugLog($"Zone claim registered at {position}");
         }
     }
 
@@ -23,7 +32,7 @@ internal static class ZoneClaimRegistry
     {
         lock (Lock)
         {
-            if (Positions.Remove(position))
+            if (Zones.Remove(position))
             {
                 ModLogger.DebugLog($"Zone claim unregistered at {position}");
             }
@@ -34,7 +43,15 @@ internal static class ZoneClaimRegistry
     {
         lock (Lock)
         {
-            return Positions.Contains(position);
+            return Zones.ContainsKey(position);
+        }
+    }
+
+    internal static IReadOnlyList<ZoneClaim> GetAllZones()
+    {
+        lock (Lock)
+        {
+            return new List<ZoneClaim>(Zones.Values);
         }
     }
 }

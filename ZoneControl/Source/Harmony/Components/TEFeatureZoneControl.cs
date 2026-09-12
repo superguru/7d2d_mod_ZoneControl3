@@ -140,6 +140,7 @@ public class TEFeatureZoneControl : TEFeatureAbs
         {
             UsePoiZone = false;
             SetModified();
+            RegisterZone();
             RefreshBoundsHelper();
             return true;
         }
@@ -152,6 +153,7 @@ public class TEFeatureZoneControl : TEFeatureAbs
                 _poiMin = min;
                 _poiMax = max;
                 SetModified();
+                RegisterZone();
                 RefreshBoundsHelper();
                 return true;
             }
@@ -170,14 +172,14 @@ public class TEFeatureZoneControl : TEFeatureAbs
     public override void OnAdded(Vector3i _blockPos, BlockValue _blockValue)
     {
         base.OnAdded(_blockPos, _blockValue);
-        ZoneClaimRegistry.Register(ToWorldPos());
+        RegisterZone();
         RefreshBoundsHelper();
     }
 
     public override void OnLoad()
     {
         base.OnLoad();
-        ZoneClaimRegistry.Register(ToWorldPos());
+        RegisterZone();
         RefreshBoundsHelper();
     }
 
@@ -272,6 +274,28 @@ public class TEFeatureZoneControl : TEFeatureAbs
         min = poi.boundingBoxPosition;
         max = poi.boundingBoxPosition + poi.boundingBoxSize;
         return true;
+    }
+
+    private void GetZoneBounds(out Vector3i min, out Vector3i max)
+    {
+        if (UsePoiZone)
+        {
+            min = _poiMin;
+            max = _poiMax;
+        }
+        else
+        {
+            var blockPos = ToWorldPos();
+            int half = ModConfig.ZoneControlSize() / 2;
+            min = new Vector3i(blockPos.x - half, 0, blockPos.z - half);
+            max = new Vector3i(blockPos.x + half, 0, blockPos.z + half);
+        }
+    }
+
+    private void RegisterZone()
+    {
+        GetZoneBounds(out var min, out var max);
+        ZoneClaimRegistry.Register(ToWorldPos(), min, max);
     }
 
     private void GetZoneFootprint(out Vector3 center, out Vector3 size)
