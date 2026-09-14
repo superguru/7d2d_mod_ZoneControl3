@@ -137,7 +137,9 @@
     <Compile Include="Source\Harmony\Commands\ZcCommandRegistry.cs" />
     <Compile Include="Source\Harmony\Extends\GameManager_Ext.cs" />
     <Compile Include="Source\Harmony\Extends\EntityPlayerLocal_Ext.cs" />
+    <Compile Include="Source\Harmony\Extends\GameUtils_Ext.cs" />
     <Compile Include="Source\Harmony\Extends\RegionFileManager_Ext.cs" />
+    <Compile Include="Source\Harmony\Extends\TEFeatureStorage_Ext.cs" />
     <Compile Include="Source\Harmony\Extends\XUiC_MapArea_Ext.cs" />
     <Compile Include="Source\Harmony\Mod_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -54,4 +54,19 @@ internal static class ZoneClaimRegistry
             return new List<ZoneClaim>(Zones.Values);
         }
     }
+
+    internal static bool DoesAnyZoneOverlap(Vector3i min, Vector3i max)
+    {
+        lock (Lock)
+        {
+            foreach (var zone in Zones.Values)
+            {
+                if (zone.Min.x <= max.x && zone.Max.x >= min.x && zone.Min.z <= max.z && zone.Max.z >= min.z)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
